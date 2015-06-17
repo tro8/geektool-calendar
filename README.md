@@ -17,6 +17,7 @@ Installation
 4. chmod +x cal.py
 5. ./cal.py を実行し以下のように表示されれば成功です．
 ![shell](docs/shell.png)
+
 6. GeekTool の設定
 ![shell](docs/geektool.png)
 
