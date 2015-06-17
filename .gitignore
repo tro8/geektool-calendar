@@ -55,3 +55,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# tro8
+cal.ini
+*.txt
