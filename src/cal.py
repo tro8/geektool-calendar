@@ -1,4 +1,27 @@
 #! /usr/bin/python
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2015 tro8
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 
 import calendar
 import datetime
@@ -34,8 +57,8 @@ def createCalendar(year, month):
     #        print ' ' + w[count] + ' '
         ss += ' ' + w[count] + ' ' + '\n'
         count += 1
-    # print count, len(w)    
-    
+    # print count, len(w)
+
     # p = re.compile('^')
     # s=p.sub('_', s)
     # print re.search('^.',s)
@@ -49,9 +72,9 @@ def createCalendar(year, month):
 def doToday(s, day, color):
 
     sday = str(day)
-    s=re.sub( ' ' + sday + ' ' ,' ' +color + sday + nocolor + ' ', s)            
-    #s=re.sub( ' ' + sday + ' ' ,'[' +color + sday + nocolor + ']', s)            
-    #s=re.sub( ' ' + sday + ' ' ,'[' + sday  + ']', s)            
+    s=re.sub( ' ' + sday + ' ' ,' ' +color + sday + nocolor + ' ', s)
+    #s=re.sub( ' ' + sday + ' ' ,'[' +color + sday + nocolor + ']', s)
+    #s=re.sub( ' ' + sday + ' ' ,'[' + sday  + ']', s)
     return s
 
 # ------------------------------------------------
@@ -61,7 +84,7 @@ def doHoliday(s, dayList, color):
 
     for day in dayList:
         sday = str(day)
-        s=re.sub( ' ' + sday + ' ' ,' ' +color + sday + nocolor + ' ', s)            
+        s=re.sub( ' ' + sday + ' ' ,' ' +color + sday + nocolor + ' ', s)
 
     return s
 
@@ -76,14 +99,14 @@ def doWeek(s, days, week, color):
     for i in days: #cal.itermonthdays2(2013,5):
         if i[0] > 0 and i[1]==week:
             day = str(i[0])
-            s=re.sub( ' ' + day + ' ' ,' ' +color + day + nocolor + ' ', s)            
+            s=re.sub( ' ' + day + ' ' ,' ' +color + day + nocolor + ' ', s)
     return s
 
 # ------------------------------------------------
 #
 # ------------------------------------------------
 def doCal(year, month, day):
-    
+
     s = createCalendar(year, month)
 
     cal = calendar.Calendar(6)
@@ -95,8 +118,8 @@ def doCal(year, month, day):
 
     holidayList = cal_googleapis_calendar.getHoliday(year, month)
     s = doHoliday(s, holidayList, '\033[1;31m')
-    
-    
+
+
     s = doWeek(s, days1, 5, '\033[1;34m')
     s = doWeek(s, days2, 6, '\033[1;31m')
 
